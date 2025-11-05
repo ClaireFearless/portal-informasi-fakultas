@@ -1,10 +1,12 @@
+// widgets/berita_card.dart
 import 'package:flutter/material.dart';
 
+// Model Berita
 class BeritaItem {
   final String judul;
   final String tanggal;
-  final String deskripsi;
-  final String deskripsiLengkap;
+  final String deskripsi; // Deskripsi pendek untuk daftar
+  final String deskripsiLengkap; // Deskripsi lengkap untuk detail
   final String imageAsset;
 
   BeritaItem({
@@ -16,11 +18,16 @@ class BeritaItem {
   });
 }
 
+// Widget Card Berita
 class BeritaCard extends StatelessWidget {
   final BeritaItem berita;
-  final VoidCallback onTap;
+  final VoidCallback onTap; // Ganti onTap dari BeritaItem ke fungsi callback
 
-  const BeritaCard({super.key, required this.berita, required this.onTap});
+  const BeritaCard({
+    super.key,
+    required this.berita,
+    required this.onTap, // Terima fungsi callback
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,63 +35,81 @@ class BeritaCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: onTap,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(12),
-              ),
-              child: Image.asset(
-                berita.imageAsset,
-                height: 150,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    height: 150,
-                    color: Colors.grey[300],
-                    child: const Icon(Icons.image_not_supported),
-                  );
-                },
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Gambar Berita dari Assets
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+            child: Image.asset(
+              berita.imageAsset,
+              height: 150,
+              width: double.infinity,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  height: 150,
+                  color: Colors.grey[300],
+                  child: const Icon(Icons.image_not_supported),
+                );
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    berita.judul,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF15438e),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Judul Berita
+                Text(
+                  berita.judul,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF15438e),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                // Tanggal Berita
+                Text(
+                  berita.tanggal,
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+                const SizedBox(height: 8),
+                // Deskripsi Singkat
+                Text(
+                  berita.deskripsi,
+                  style: const TextStyle(fontSize: 14, color: Colors.black54),
+                ),
+                const SizedBox(height: 12),
+                // Tombol Baca Selengkapnya
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: ElevatedButton(
+                    onPressed:
+                        onTap, // Panggil fungsi callback saat tombol ditekan
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(
+                        0xFF15438e,
+                      ), // Warna biru utama
+                      foregroundColor: Colors.white, // Warna teks
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
+                    child: const Text('Baca Selengkapnya'),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    berita.tanggal,
-                    style: const TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    berita.deskripsi,
-                    style: const TextStyle(fontSize: 14, color: Colors.black54),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
+// Widget Detail Berita
 class DetailBeritaPage extends StatelessWidget {
   final BeritaItem berita;
 
@@ -104,6 +129,7 @@ class DetailBeritaPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Gambar Berita dari Assets
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
@@ -121,6 +147,7 @@ class DetailBeritaPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
+              // Judul Berita
               Text(
                 berita.judul,
                 style: const TextStyle(
@@ -130,12 +157,13 @@ class DetailBeritaPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-
+              // Tanggal Berita
               Text(
                 berita.tanggal,
                 style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
               const SizedBox(height: 16),
+              // Deskripsi Lengkap Berita
               Text(
                 berita.deskripsiLengkap,
                 style: const TextStyle(
