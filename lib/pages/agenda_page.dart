@@ -28,10 +28,7 @@ class AgendaPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF1E40AF), // Blue color from Umsida
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
+        automaticallyImplyLeading: false,
         title: Image.asset(
           'assets/images/umsida_logo.png',
           height: 32,
@@ -46,17 +43,7 @@ class AgendaPage extends StatelessWidget {
             );
           },
         ),
-        centerTitle: false,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
+        centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
