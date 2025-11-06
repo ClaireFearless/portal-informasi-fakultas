@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/profil_section.dart'; // Import widget kita
+import '../widgets/profil_section.dart'; // Import widget profil section
 
 class ProfilPage extends StatelessWidget {
   const ProfilPage({super.key});
@@ -9,39 +9,27 @@ class ProfilPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        // AppBar
         backgroundColor: const Color(0xFF1E40AF),
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
+        automaticallyImplyLeading: false, // Tidak ada tombol back otomatis
         title: Image.asset(
-          'assets/images/umsida_logo.png', // <-- SUDAH SESUAI
-          height: 32,
+          'assets/images/umsida_logo.png',
+          height: 40,
           errorBuilder: (context, error, stackTrace) {
             return const Text(
               'UMSIDA',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             );
           },
         ),
-        centerTitle: false,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
+        centerTitle: true, // Logo ditengah
       ),
+
+      // ===== BODY =====
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,13 +47,13 @@ class ProfilPage extends StatelessWidget {
               ),
             ),
 
-            // --- [UPDATED] HERO IMAGE ---
+            // Hero Image
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
                 child: Image.asset(
-                  'assets/images/kampus.png', // <-- Ganti path gambar Anda
+                  'assets/images/kampus.png',
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -87,7 +75,7 @@ class ProfilPage extends StatelessWidget {
             ),
             const SizedBox(height: 25),
 
-            // --- Visi & Misi ---
+            // ===== VISI & MISI =====
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ProfilSection(
@@ -141,7 +129,7 @@ class ProfilPage extends StatelessWidget {
                     ),
                     _buildListItem(
                       context,
-                      'Meningkatkan dan mengembangkan kerjasama dengan instansi pemerintah/swasta/ baik dalam maupun luar negeri yang berkelanjutan untuk menguatkan Catur Dharma Perguruan Tinggi Muhammadiyah (pendidikan pengajaran, penelitian, pengabdian dan Al Islam Kemuhammadiyahan).',
+                      'Meningkatkan dan mengembangkan kerjasama dengan instansi pemerintah/swasta/ baik dalam maupun luar negeri yang berkelanjutan untuk menguatkan Catur Dharma Perguruan Tinggi Muhammadiyah.',
                       4,
                     ),
                     _buildListItem(
@@ -151,7 +139,7 @@ class ProfilPage extends StatelessWidget {
                     ),
                     _buildListItem(
                       context,
-                      'Meningkatkan pembinaan dan pengembangan kemahasiswaan yang unggul dan inovatif dalam rekayasa IPTEKS berdasarkan nilai- nilai Islam.',
+                      'Meningkatkan pembinaan dan pengembangan kemahasiswaan yang unggul dan inovatif dalam rekayasa IPTEKS berdasarkan nilai-nilai Islam.',
                       6,
                     ),
                   ],
@@ -160,24 +148,24 @@ class ProfilPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // --- Tujuan Fakultas ---
+            // ===== TUJUAN =====
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ProfilSection(
                 title: 'Tujuan',
-                icon: Icons.check_circle_outline, // Ikon baru
-                color: Colors.blue.shade700, // Warna baru
+                icon: Icons.check_circle_outline,
+                color: Colors.blue.shade700,
                 contentWidget: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildListItem(
                       context,
-                      'Menghasilkan sarjana sains dan teknologi yang professional dan Islami.',
+                      'Menghasilkan sarjana sains dan teknologi yang profesional dan Islami.',
                       1,
                     ),
                     _buildListItem(
                       context,
-                      'Menghasilkan penelitian sains dan teknologi untuk kesejateraan masyarakat.',
+                      'Menghasilkan penelitian sains dan teknologi untuk kesejahteraan masyarakat.',
                       2,
                     ),
                     _buildListItem(
@@ -187,17 +175,17 @@ class ProfilPage extends StatelessWidget {
                     ),
                     _buildListItem(
                       context,
-                      'Mewujudkan kerjasama dengan lembaga di dalam dan luar negeri untuk penguatan Catur Dharma Perguruan Tinggi Muhammadiyah bidang sains dan teknologi.',
+                      'Mewujudkan kerjasama dengan lembaga di dalam dan luar negeri untuk penguatan Catur Dharma Perguruan Tinggi Muhammadiyah.',
                       4,
                     ),
                     _buildListItem(
                       context,
-                      'Mewujudkan tata kelola Fakultas sains dan teknologi yang profesional berdasarkan nilai- nilai Islam.',
+                      'Mewujudkan tata kelola Fakultas Sains dan Teknologi yang profesional berdasarkan nilai-nilai Islam.',
                       5,
                     ),
                     _buildListItem(
                       context,
-                      'Meningkatkan prestasi akademik dan non akademik mahasiswa fakultas sains dan teknologi.',
+                      'Meningkatkan prestasi akademik dan non akademik mahasiswa Fakultas Sains dan Teknologi.',
                       6,
                     ),
                   ],
@@ -206,7 +194,7 @@ class ProfilPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // --- [UPDATED] PIMPINAN FAKULTAS (Horizontal List) ---
+            // ===== PIMPINAN FAKULTAS =====
             const Padding(
               padding: EdgeInsets.only(left: 20.0, bottom: 15, top: 10),
               child: Text(
@@ -219,7 +207,7 @@ class ProfilPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 150, // (Perbaikan overflow)
+              height: 150,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(left: 20),
@@ -228,33 +216,31 @@ class ProfilPage extends StatelessWidget {
                     'Ir. Iswanto, ST., M.MT.',
                     'Dekan',
                     'assets/images/dekan.png',
-                  ), // <-- UPDATED
+                  ),
                   _buildPimpinanCard(
                     'Dr. Ir. Jamaaluddin, MM.',
                     'Wakil Dekan',
                     'assets/images/wadek.png',
-                  ), // <-- UPDATED
-                  // Kartu ketiga dihapus
+                  ),
                 ],
               ),
             ),
             const SizedBox(height: 20),
 
-            // --- Sejarah Fakultas (Dapat Anda isi) ---
+            // ===== SEJARAH =====
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ProfilSection(
                 title: 'Sejarah Fakultas',
                 content:
-                    'Fakultas Sains dan Teknik Universitas Muhammadiyah Sidoarjo', // Isi lebih lengkap
+                    'Fakultas Sains dan Teknik Universitas Muhammadiyah Sidoarjo.',
                 icon: Icons.history,
                 color: Colors.green.shade700,
               ),
             ),
             const SizedBox(height: 25),
 
-            // --- [UPDATED] FASILITAS ---
-            // Mengganti GridView dengan satu kartu besar karena hanya ada 1 gambar
+            // ===== FASILITAS =====
             const Padding(
               padding: EdgeInsets.only(left: 20.0, bottom: 15),
               child: Text(
@@ -268,13 +254,11 @@ class ProfilPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              // Menggunakan helper card yang baru
               child: _buildSingleFasilitasCard(
                 'Perpustakaan',
-                'assets/images/Perpustakaan.png', // <-- Perhatikan huruf besar 'P'
+                'assets/images/Perpustakaan.png',
               ),
             ),
-
             const SizedBox(height: 30),
           ],
         ),
@@ -282,8 +266,8 @@ class ProfilPage extends StatelessWidget {
     );
   }
 
-  // --- Helper widget untuk daftar Visi/Misi/Tujuan ---
-  Widget _buildListItem(BuildContext context, String text, int index) {
+  // ===== Helper Functions =====
+  static Widget _buildListItem(BuildContext context, String text, int index) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Row(
@@ -312,17 +296,19 @@ class ProfilPage extends StatelessWidget {
     );
   }
 
-  // Helper widget untuk kartu Pimpinan (Horizontal)
-  Widget _buildPimpinanCard(String name, String title, String imagePath) {
+  static Widget _buildPimpinanCard(
+    String name,
+    String title,
+    String imagePath,
+  ) {
     return Container(
-      width: 120, // Lebar kartu
+      width: 120,
       margin: const EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            // ignore: deprecated_member_use
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 1,
             blurRadius: 6,
@@ -342,7 +328,7 @@ class ProfilPage extends StatelessWidget {
               onBackgroundImageError: (e, s) =>
                   const Icon(Icons.person, size: 30, color: Colors.grey),
             ),
-            const SizedBox(height: 8), // (Perbaikan overflow)
+            const SizedBox(height: 8),
             Text(
               name,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
@@ -355,8 +341,8 @@ class ProfilPage extends StatelessWidget {
               title,
               style: const TextStyle(fontSize: 11, color: Colors.grey),
               textAlign: TextAlign.center,
-              maxLines: 1, // (Perbaikan overflow)
-              overflow: TextOverflow.ellipsis, // (Perbaikan overflow)
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
@@ -364,17 +350,14 @@ class ProfilPage extends StatelessWidget {
     );
   }
 
-  // --- [BARU] Helper widget untuk satu kartu Fasilitas (Full-width) ---
-  // (Menggantikan _buildFasilitasCard yang lama)
-  Widget _buildSingleFasilitasCard(String title, String imagePath) {
+  static Widget _buildSingleFasilitasCard(String title, String imagePath) {
     return Container(
-      height: 250, // Lebih tinggi agar proporsional
+      height: 250,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            // ignore: deprecated_member_use
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 1,
             blurRadius: 6,
@@ -405,13 +388,10 @@ class ProfilPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(12.0), // Padding sedikit lebih besar
+            padding: const EdgeInsets.all(12.0),
             child: Text(
               title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ), // Font lebih besar
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
